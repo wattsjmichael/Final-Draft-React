@@ -1,5 +1,6 @@
 import React from "react";
 import Keg from "./Keg";
+import PropTypes from "prop-types";
 
 const fullKegList = [
   {  
@@ -25,21 +26,29 @@ const fullKegList = [
   }
 ];
 
-function KegList(){
+
+
+function FullDraftList(props){
   return (
     <React.Fragment>
-      <hr/>
-      {fullKegList.map((keg, index)=>
+      
+      {props.draftList.map((keg)=>
       <Keg
-      name={keg.name}
-      brand={keg.brand}
-      price={keg.price}
-      abv={keg.abv}
-      pintsLeft={keg.pintsLeft}
-      key={index}/>
+        whenTicketClicked = { props.onKegSelection}
+        name={keg.name}
+        brand={keg.brand}
+        price={keg.price}
+        abv={keg.abv}
+        pintsLeft={keg.pintsLeft}
+        key={keg.id}/>
       )}
     </React.Fragment>
   );
 }
 
-export default KegList;
+FullDraftList.propTypes = {
+  fullDraftList: PropTypes.array,
+  onKegSelection: PropTypes.func
+};
+
+export default FullDraftList;
