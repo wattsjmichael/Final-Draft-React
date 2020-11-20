@@ -28,6 +28,14 @@ class DraftControl extends React.Component {
     }
   }
 
+  handleDeletingKeg = (id) => {
+    const newFullDraftList = this.state.fullDraftList.filter(keg => keg.id !== id);
+    this.setState({
+      fullDraftList : newFullDraftList,
+      selectedKeg: null
+    });
+  }
+
   handleChangingSelectedKeg = (id) => {
     const selectedKeg = this.state.fullDraftList.filter(keg => keg.id === id)[0];
     this.setState({selectedKeg : selectedKeg});
@@ -45,7 +53,7 @@ class DraftControl extends React.Component {
     let buttonText = null;
 
     if (this.state.selectedKeg != null){
-      currentlyVisibleState = <KegDetail Keg = {this.selectedKeg} />
+      currentlyVisibleState = <KegDetail Keg = {this.state.selectedKeg} onClickingDelete = {this.handleDeletingKeg} />
       buttonText = "Return to the Keg List"
     }
     else if (this.state.kegFormVisibleOnPage){
