@@ -2,6 +2,7 @@ import React from "react";
 import NewKegForm from "./NewKegForm";
 import DraftList from "./DraftList";
 import KegDetail from "./KegDetail";
+import EditKegForm from "./EditKegForm";
 
 class DraftControl extends React.Component {
 
@@ -10,7 +11,8 @@ class DraftControl extends React.Component {
     this.state = {
       kegFormVisibleOnPage: false,
       fullDraftList: [],
-      selectedKeg: null
+      selectedKeg: null,
+      editing: false
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -19,13 +21,30 @@ class DraftControl extends React.Component {
     if (this.state.selectedKeg != null){
       this.setState({
         kegFormVisibleOnPage: false,
-        selectedKeg: null
+        selectedKeg: null,
+        editing: false
       });
     } else {
       this.setState(prevState => ({
         kegFormVisibleOnPage: !prevState.kegFormVisibleOnPage,
       }));
     }
+  }
+
+  handleEditingKegInDraftList = (kegToEdit) => {
+    const editedFullDraftList = this.state.fullDraftList
+    .filter(keg => keg.id !== this.state.selectedKeg.id)
+    .concat(kegToEdit);
+    this.setState({
+      fullDraftList: editedFullDraftList,
+      editing: false,
+      selectedKeg: null
+    })
+  }
+
+  handleEditClick = () => {
+    console.log("You Made it!");
+    this.setState({editing:true});
   }
 
   handleDeletingKeg = (id) => {
@@ -51,9 +70,13 @@ class DraftControl extends React.Component {
   render(){
     let currentlyVisibleState = null;
     let buttonText = null;
-
-    if (this.state.selectedKeg != null){
-      currentlyVisibleState = <KegDetail keg = {this.state.selectedKeg} onClickingDelete = {this.handleDeletingKeg} />
+    if (this.state.editing){
+      currentlyVisibleState = <EditKegForm keg = {this.state.selectedKeg} onEditKeg = {this.handleEditingKegInDraftList} />
+      buttonText = "Return to the Draft List"
+    }
+    else if (this.state.selectedKeg != null){
+      currentlyVisibleState = <KegDetail keg = {this.state.selectedKeg} onClickingDelete = {this.handleDeletingKeg}
+      onClickingEdit = {this.handleEditClick} />
       buttonText = "Return to the Keg List"
     }
     else if (this.state.kegFormVisibleOnPage){
