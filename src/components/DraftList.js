@@ -28,11 +28,11 @@ const fullKegList = [
 
 
 
-function FullDraftList(props){
+function DraftList(props){
   return (
     <React.Fragment>
       
-      {props.draftList.map((keg)=>
+      {props.draftList.map((keg) =>
       <Keg
         whenKegClicked = { props.onKegSelection}
         name={keg.name}
@@ -47,9 +47,9 @@ function FullDraftList(props){
   );
 }
 
-FullDraftList.propTypes = {
-  fullDraftList: PropTypes.array,
+DraftList.propTypes = {
+  draftList: PropTypes.array,
   onKegSelection: PropTypes.func
 };
 
-export default FullDraftList;
+export default DraftList;

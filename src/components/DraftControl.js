@@ -53,7 +53,7 @@ class DraftControl extends React.Component {
     let buttonText = null;
 
     if (this.state.selectedKeg != null){
-      currentlyVisibleState = <KegDetail Keg = {this.state.selectedKeg} onClickingDelete = {this.handleDeletingKeg} />
+      currentlyVisibleState = <KegDetail keg = {this.state.selectedKeg} onClickingDelete = {this.handleDeletingKeg} />
       buttonText = "Return to the Keg List"
     }
     else if (this.state.kegFormVisibleOnPage){
