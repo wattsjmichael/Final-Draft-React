@@ -35,7 +35,7 @@ function NewKegForm(props) {
           name="abv"
           placeholder="Alcohol Content" />
         <input
-          type="text"
+          type="number"
           name="pintsLeft"
           placeholder="Total Number of Pints" />
           <button type="submit">Add a Keg</button>

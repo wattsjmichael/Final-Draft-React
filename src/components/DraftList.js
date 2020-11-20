@@ -34,12 +34,13 @@ function FullDraftList(props){
       
       {props.draftList.map((keg)=>
       <Keg
-        whenTicketClicked = { props.onKegSelection}
+        whenKegClicked = { props.onKegSelection}
         name={keg.name}
-        brand={keg.brand}
+        brewery={keg.brewery}
         price={keg.price}
         abv={keg.abv}
         pintsLeft={keg.pintsLeft}
+        id = {keg.id}
         key={keg.id}/>
       )}
     </React.Fragment>

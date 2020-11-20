@@ -16,13 +16,20 @@ class DraftControl extends React.Component {
   }
 
   handleClick = () => {
-    this.setState(prevState => ({
-      kegFormVisibleOnPage: !prevState.kegFormVisibleOnPage
-    }));
+    if (this.state.selectedKeg != null){
+      this.setState({
+        kegFormVisibleOnPage: false,
+        selectedKeg: null
+      });
+    } else {
+      this.setState(prevState => ({
+        kegFormVisibleOnPage: !prevState.kegFormVisibleOnPage,
+      }));
+    }
   }
 
   handleChangingSelectedKeg = (id) => {
-    const selectedKeg = this.fullDraftList.filter(keg => keg.id === id)[0];
+    const selectedKeg = this.state.fullDraftList.filter(keg => keg.id === id)[0];
     this.setState({selectedKeg : selectedKeg});
   }
 

@@ -7,10 +7,10 @@ function KegDetail(props){
     <React.Fragment>
     <div onClick= {() => props.whenKegClicked(props.id)}>
     <hr/>
-    <h2>{props.name} Made By {props.brand}</h2>
-    <p>abv {props.abv}</p>
-    <h3>price {props.price}</h3>
-    <p>{props.pintsLeft} total pints left</p> {/* Make this a percentage */}
+    <h2>{keg.name} Made By {keg.brewery}</h2>
+    <p>abv {keg.abv}</p>
+    <h3>price {keg.price}</h3>
+    <p>{keg.pintsLeft} total pints left</p> {/* Make this a percentage */}
     <hr/>
     </div>
   </React.Fragment>
