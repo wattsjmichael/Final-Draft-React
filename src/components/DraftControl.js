@@ -9,6 +9,7 @@ class DraftControl extends React.Component {
     this.state = {
       kegFormVisibleOnPage: false
     };
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick = () => {
