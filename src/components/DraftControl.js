@@ -12,7 +12,9 @@ class DraftControl extends React.Component {
       kegFormVisibleOnPage: false,
       fullDraftList: [],
       selectedKeg: null,
-      editing: false
+      editing: false,
+      pintsLeft: 127
+      
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -31,6 +33,13 @@ class DraftControl extends React.Component {
     }
   }
 
+  handleSellingPint = (id) => {
+    const selectedKeg = this.state.fullDraftList
+    .filter(keg => keg.id === id)[0];
+    selectedKeg.pintsLeft -= 1;
+  };
+}
+
   handleEditingKegInDraftList = (kegToEdit) => {
     const editedFullDraftList = this.state.fullDraftList
     .filter(keg => keg.id !== this.state.selectedKeg.id)
@@ -43,7 +52,6 @@ class DraftControl extends React.Component {
   }
 
   handleEditClick = () => {
-    console.log("You Made it!");
     this.setState({editing:true});
   }
 
@@ -76,8 +84,9 @@ class DraftControl extends React.Component {
     }
     else if (this.state.selectedKeg != null){
       currentlyVisibleState = <KegDetail keg = {this.state.selectedKeg} onClickingDelete = {this.handleDeletingKeg}
-      onClickingEdit = {this.handleEditClick} />
+      onClickingEdit = {this.handleEditClick} onSellingPint = {this.handleSellingPint}/>
       buttonText = "Return to the Keg List"
+      
     }
     else if (this.state.kegFormVisibleOnPage){
       currentlyVisibleState = <NewKegForm onNewKegCreation={this.handleAddNewKegToDraftList} />
