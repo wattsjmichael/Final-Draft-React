@@ -33,7 +33,8 @@ function ReusableKegForm(props) {
 
 ReusableKegForm.propTypes = {
   formSubmissionHandler: PropTypes.func,
-  buttonText: PropTypes.string
+  buttonText: PropTypes.string,
+  
 };
 
 export default ReusableKegForm;
