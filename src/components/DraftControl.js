@@ -13,7 +13,7 @@ class DraftControl extends React.Component {
       fullDraftList: [],
       selectedKeg: null,
       editing: false,
-      pints: 127,
+      
       
       
       
@@ -40,18 +40,22 @@ class DraftControl extends React.Component {
       }));
     }
   }
+  
   handleSellingPint = (id) => {
-    console.log(this.state.pints)
-    const clone = [...this.state.fullDraftList]
+    const clonedArray = [...this.state.fullDraftList]
     for (let i = 0; i < this.state.fullDraftList.length; i++){
-      if (clone[i].id === id){
-        clone[i].pintsLeft -= 1
-      }
+      if (clonedArray[i].id === id && clonedArray[i].pintsLeft > 0 ){
+        clonedArray[i].pintsLeft -= 1
+      } else if (clonedArray[i].pintsLeft <= 0){
+        return alert("Change the Keg! and Dont forget to delete it!");
     }
+  } 
+    
+
     this.setState({
-          fullDraftList: clone
+          fullDraftList: clonedArray
     });
-  }
+}
 
 
   handleEditingKegInDraftList = (kegToEdit) => {
