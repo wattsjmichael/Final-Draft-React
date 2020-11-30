@@ -47,7 +47,7 @@ class DraftControl extends React.Component {
       if (clonedArray[i].id === id && clonedArray[i].pintsLeft > 0 ){
         clonedArray[i].pintsLeft -= 1
       } else if (clonedArray[i].pintsLeft <= 0){
-        return alert("Change the Keg! and Dont forget to delete it!");
+        return alert("Change the Keg! Dont forget to delete it!");
     }
   } 
     
